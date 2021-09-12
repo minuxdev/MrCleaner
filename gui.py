@@ -97,7 +97,8 @@ Grid.rowconfigure(output_frame, 0, weight=1)
 select_dir_button = Button(entry_frame, text="Directory", width=10, 
                             command=get_directory)
 
-input_dir = Entry(entry_frame, font="Monospace 10", fg="black", bg="white")
+input_dir = Entry(entry_frame, font="Monospace 10", fg="black", bg="white",
+                    justify="center")
 
 select_dir_button.grid(sticky="we", padx=5, pady=5)
 input_dir.grid(row=0, column=1, sticky="we", padx=5, pady=5)
