@@ -1,6 +1,7 @@
 from tkinter import (Checkbutton, Button, Entry, Frame, Label, LabelFrame, Grid, 
-                    IntVar, Scrollbar, Listbox, Tk, Menu, Toplevel, Text)
-from tkinter.constants import INSERT
+                    IntVar, Scrollbar, Listbox, Tk, Menu, Toplevel, Text, font)
+from tkinter import *
+from tkinter.ttk import Progressbar
 
 
 class MrCleaner():
@@ -49,12 +50,15 @@ class MrCleaner():
                                 xscrollcommand=self.scroll_h.set)
         self.scroll_h.config(command=self.list_box.xview)
         self.scroll_v.config(command=self.list_box.yview)
+        
+        self.percentage = Label(self.output_frame, fg='#fff',
+                                text='0%', justify='center', font='Poppins 8')
 
 
     def crate_menubar(self):
         self.menu = Menu(self.master)
         about_ = Menu(self.menu, tearoff=0)
-        about_.add_command(label='Autor')
+        about_.add_command(label='Autor', command=self.autor_)
         about_.add_command(label='Version')
         
         help_ = Menu(self.menu, tearoff=0)
@@ -89,10 +93,13 @@ class MrCleaner():
         self.list_box.grid(columnspan=2,sticky="news", padx=4, pady=4)
         self.scroll_v.grid(row=0, column=2, sticky="ns")
         self.scroll_h.grid(row=1, columnspan=2, sticky="we")
+        self.percentage.grid(row=2, sticky='we', padx=4, pady=4, columnspan=2)
 
     
     def autor_(self):
-        pass
+        msg = "Developed by: Minux-Team"
+        title = "Developer"
+        self.top_level_gui(title=title, msg=msg)
     
     def version_(self):
         pass
@@ -103,16 +110,15 @@ class MrCleaner():
                                 How to use me!
 
     1 - Search button   \n
-    It ask for a directory and go throw it in order to search for
-    duplicated files. NOTE: It might take a while and stop responding
-    depending on how deep the directory tree is, on click, a pop up 
-    screen is shown just to keep you informed.
+    It ask for a directory and loop through it in order to search for
+    duplicated files. 
 
     2 - Delete Files and Report Generator\n
     Mark at least one of the options to be executed when the "Run" button
     is clicked, otherwise a messsage box will be shown informing that.
     If "Delete files" option is marked, it will make the program delete all
-    duplicated files into the given directory.
+    duplicated files into the given directory after create a backup of each
+    file found into a directory to be asked when the "Run" button is clicked.
     If "Report Generator" is checked, it will allow the program to generate
     a "Report.txt" having a list of all duplicated files found.
 
@@ -128,8 +134,7 @@ class MrCleaner():
     
     def top_level_gui(self, title, msg):
         top = Toplevel(self.master)
-        top.minsize(320, 250)
-        top.resizable(width=False, height=False)
+        top.minsize(250, 150)
         top.title(title)
         top.grab_set()
         text_box = Text(top, spacing1=1, spacing2=1, font="Poppins 10")
