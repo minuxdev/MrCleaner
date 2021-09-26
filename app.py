@@ -45,7 +45,9 @@ it my take a while and or seem to be frozen, so please, be patient and do not in
 
 def locate_duplicated_files():
     global duplicated_files, sizes
+    dir_btn = gui.select_directory
     run_btn = gui.run_btn
+    dir_btn.config(state=DISABLED)
     run_btn.config(state=DISABLED)
     
     duplicated_files = []
@@ -93,6 +95,7 @@ def locate_duplicated_files():
     
     progress['text'] = '100%'
     run_btn.config(state=ACTIVE)
+    dir_btn.config(state=ACTIVE)
 
 
 def extract_file_from_duplicated(dub_files, sizes):

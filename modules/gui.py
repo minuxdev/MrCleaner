@@ -27,7 +27,7 @@ class MrCleaner():
         self.ctrl_rep = IntVar()
         
         #   ENTRY  FRAME
-        self.select_directory = Button(self.entry_frame, text="Search",
+        self.select_directory = Button(self.entry_frame, text="Find",
                             width=12, font="Poppins 9")
         self.input = Entry(self.entry_frame, bg="white", fg="black", 
                             font="Poppins 9", justify="center", 
@@ -59,7 +59,7 @@ class MrCleaner():
         self.menu = Menu(self.master)
         about_ = Menu(self.menu, tearoff=0)
         about_.add_command(label='Autor', command=self.autor_)
-        about_.add_command(label='Version')
+        about_.add_command(label='Version', command=self.version_)
         
         help_ = Menu(self.menu, tearoff=0)
         help_.add_command(label='Turorial', command=self.tutorial_)
@@ -97,17 +97,32 @@ class MrCleaner():
 
     
     def autor_(self):
-        msg = "Developed by: Minux-Team"
+        msg = '''
+        
+        Developed by: Minux-Team'''
         title = "Developer"
-        self.top_level_gui(title=title, msg=msg)
+        self.top_level_gui(title=title)
+        
+        Label(self.top, justify='center', fg='#fff', 
+            text=msg, font="Poppins 9").pack(fill='both')
+        self.top.resizable(width=False, height=False)
     
     def version_(self):
-        pass
+        title = 'McCliner v1.0'
+        msg = '''
+    You are using the Version 1.0
+    Updating is on the way.        
+        '''
+        self.top_level_gui(title)
+        Label(self.top, justify='center', fg='#fff', 
+            text=msg, font="Poppins 9").pack(fill='both')
+        self.top.resizable(width=False, height=False)
+    
     
     def tutorial_(self):
         title = 'How to use me'
         msg = '''
-                                How to use me!
+    How to use me!
 
     1 - Search button   \n
     It ask for a directory and loop through it in order to search for
@@ -127,19 +142,22 @@ class MrCleaner():
     is shown informing that no option where checked to be executed.
         '''
         
-        self.top_level_gui(title, msg)
+        self.top_level_gui(title)
+        
+        text_box = Label(self.top, text=msg, 
+                        justify='center', font="Poppins 9")
+        text_box.grid(sticky='news', padx=10, pady=10)
+        self.top.resizable(width=False, height=False)
     
     def update_(self):
         pass
     
-    def top_level_gui(self, title, msg):
-        top = Toplevel(self.master)
-        top.minsize(250, 150)
-        top.title(title)
-        top.grab_set()
-        text_box = Text(top, spacing1=1, spacing2=1, font="Poppins 10")
-        text_box.grid(sticky='news', padx=10, pady=10)
-        text_box.insert(INSERT, msg)
+    def top_level_gui(self, title):
+        self.top = Toplevel(self.master)
+        self.top.minsize(250, 150)
+        self.top.title(title)
+        self.top.grab_set()
+        
 
 if __name__ == "__main__":
     root = Tk()
