@@ -1,3 +1,3 @@
 # MrCleaner
 
-Is a simple script for removing duplicated files on your computer.
+Is a simple python script for removing duplicated files on your computer.
