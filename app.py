@@ -49,9 +49,6 @@ def locate_duplicated_files():
     run_btn = gui.run_btn
     dir_btn.config(state=DISABLED)
     run_btn.config(state=DISABLED)
-    
-    duplicated_files = []
-    sizes = []
 
     directory = input_.get()
     
